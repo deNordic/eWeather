@@ -178,11 +178,7 @@ public class WeatherForecast extends javax.swing.JFrame {
                 
                 if(cityNameJComboBox.getSelectedItem() == CityIndex.getCityName(i))    {
                     
-                    this.ShowForecastJtable("SELECT * FROM (SELECT * FROM (SELECT * FROM DBFORECAST WHERE CITYID = "+CityIndex.getCityCode(i)+" ORDER BY FILEID DESC OFFSET 8 ROWS FETCH FIRST 32 ROWS ONLY) AS FIVEDAYTABLE ORDER BY FILEID)AS TODAY\n" 
-                            +
-                    " WHERE FILEID = (SELECT MIN(FILEID) FROM (SELECT * FROM DBFORECAST WHERE CITYID ="+CityIndex.getCityCode(i)+" ORDER BY FILEID DESC OFFSET 8 ROWS FETCH FIRST 32 ROWS ONLY) AS NOW)\n" 
-                            +
-                    " OR CAST(DT AS TIME)='11:00:00' or cast(DT AS TIME)='12:00:00'");
+                    ShowForecastJtable("SELECT * FROM DBFORECAST WHERE CITYID="+CityIndex.getCityCode(i)+"FETCH FIRST 40 ROWS ONLY");
                 
                 }    
             }
